@@ -42,20 +42,9 @@
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/ximion/appstream/archive/refs/tags/v1.0.4.tar.gz",
-                    "sha256": "dff6efa67d9ea4797870d70e3370b9e3fa66ce3c749aba68e6b10222473463cf"
-                },
-                {
-                    "type": "patch",
-                    "paths": [
-                        "patches/appstream-0001-demotion-allowlist.patch",
-                        "patches/appstream-0002-compose-default-propagate-custom.patch",
-                        "patches/appstream-0003-asc-hint-tags-silence-some-vague-validation-errors.patch",
-                        "patches/appstream-0004-compose-seperate-file-read-error.patch",
-                        "patches/appstream-0005-no-tests.patch",
-                        "patches/appstream-0006-no-docs.patch"
-                    ]
+                    "type": "git",
+                    "url": "https://github.com/flathub-infra/appstream.git",
+                    "commit": "800390ca74a5b7d1125b6d23511171b3c66d75b2"
                 }
             ]
         },
@@ -89,19 +78,9 @@
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://github.com/flatpak/flatpak/releases/download/1.16.1/flatpak-1.16.1.tar.xz",
-                    "sha256": "2b47e8f2d90d35d29339ed78e1a6eabb36eefa9cfa5a5ca3b0d1f27502c43675",
-                    "x-checker-data": {
-                        "type": "anitya",
-                        "project-id": 6377,
-                        "stable-only": true,
-                        "url-template": "https://github.com/flatpak/flatpak/releases/download/$version/flatpak-$version.tar.xz"
-                    }
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/flatpak-build-unpriv-container.patch"
+                    "type": "git",
+                    "url": "https://github.com/flathub-infra/flatpak.git",
+                    "commit": "9f97699ee12edc89ef1c6143a3ee8166c455a67c"
                 }
             ]
         },
@@ -117,28 +96,15 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://github.com/flatpak/flatpak-builder",
-                    "tag": "1.4.4",
-                    "commit": "f996a7949076ef1dc85c602da85b981b0a173a23",
-                    "disable-submodules": true,
-                    "x-checker-data": {
-                        "type": "git",
-                        "tag-pattern": "^([\\d.]+)$"
-                    }
+                    "url": "https://github.com/flathub-infra/flatpak-builder.git",
+                    "commit": "d29710b7221270f3d55b52feb14aecbb50cb6dab",
+                    "disable-submodules": true
                 },
                 {
                     "type": "git",
                     "url": "https://github.com/GNOME/libglnx.git",
                     "commit": "202b294e6079e23242e65e0426f8639841d1210b",
                     "dest": "subprojects/libglnx"
-                },
-                {
-                    "type": "patch",
-                    "paths": [
-                        "patches/flatpak-builder-lfs.patch",
-                        "patches/flatpak-builder-appstream-cli-urls.patch",
-                        "patches/flatpak-builder-disable-compressed-downloads.patch"
-                    ]
                 }
             ]
         },
@@ -168,8 +134,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/a1/8d/85fcf9bcbfefcc53a1402450f28e5acf39dcfde3aabb996a1d98481ac829/poetry_core-1.9.0-py3-none-any.whl",
-                    "sha256": "4e0c9c6ad8cf89956f03b308736d84ea6ddb44089d16f2adc94050108ec1f5a1"
+                    "url": "https://files.pythonhosted.org/packages/d2/f1/fb218aebd29bca5c506230201c346881ae9b43de7bbb21a68dc648e972b3/poetry_core-2.1.3-py3-none-any.whl",
+                    "sha256": "2c704f05016698a54ca1d327f46ce2426d72eaca6ff614132c8477c292266771"
                 }
             ]
         },
@@ -179,8 +145,8 @@
             "build-commands": [
                 "install -Dm0755 cargo/flatpak-cargo-generator.py ${FLATPAK_DEST}/bin/flatpak-cargo-generator",
                 "install -Dm0755 gradle/flatpak-gradle-generator.py ${FLATPAK_DEST}/bin/flatpak-gradle-generator",
-                "install -Dm0755 opam/flatpak-opam-generator.py ${FLATPAK_DEST}/bin/flatpak-opam-generator",
-                "install -Dm0755 pip/flatpak-pip-generator ${FLATPAK_DEST}/bin/flatpak-pip-generator",
+                "install -Dm0755 pip/flatpak-pip-generator.py ${FLATPAK_DEST}/bin/flatpak-pip-generator",
+                "install -Dm0755 poetry/flatpak-poetry-generator.py ${FLATPAK_DEST}/bin/flatpak-poetry-generator",
                 "install -Dm0755 flatpak-json2yaml.py ${FLATPAK_DEST}/bin/flatpak-json2yaml",
                 "cd node && pip3 install --prefix=/app . --no-build-isolation"
             ],
@@ -188,7 +154,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flatpak/flatpak-builder-tools.git",
-                    "commit": "aac65cf44cd4e008594a9d9ac1db08e2025067a6"
+                    "commit": "9ad6f3c4d58889d041bfc2a052719bea172664e3"
                 }
             ]
         },
@@ -196,7 +162,8 @@
             "name": "wrapper",
             "buildsystem": "simple",
             "build-commands": [
-                "install -m a+rx flatpak-builder-wrapper.sh /app/bin/flatpak-builder-wrapper"
+                "install -m a+rx flatpak-builder-wrapper.sh /app/bin/flatpak-builder-wrapper",
+                "install -m a+rx flathub-builder.sh /app/bin/flathub-build"
             ],
             "sources": [
                 {
@@ -205,6 +172,47 @@
                     "commands": [
                         "FLATPAK_BINARY=$(flatpak-spawn --host which flatpak 2> /dev/null)\nexport FLATPAK_BINARY\nexport FLATPAK_USER_DIR=$HOME/.local/share/flatpak\nexec flatpak-builder \"$@\"\n"
                     ]
+                },
+                {
+                    "type": "file",
+                    "path": "flathub-builder.sh"
+                }
+            ]
+        },
+        {
+            "name": "summary-files",
+            "buildsystem": "simple",
+            "build-commands": [
+                "install -Dm0644 summary/beta.summary ${FLATPAK_DEST}/share/flathub/flathub-beta.summary",
+                "install -Dm0644 summary/stable.summary ${FLATPAK_DEST}/share/flathub/flathub-stable.summary"
+            ],
+            "cleanup": [
+                "*"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/flathub-infra/summary-files.git",
+                    "branch": "main"
+                }
+            ]
+        },
+        {
+            "name": "flathub-repro-checker",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} --no-build-isolation ."
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/flathub-infra/flathub-repro-checker.git",
+                    "tag": "v0.1.9",
+                    "commit": "9bf9e8d740972b48a65e686ab3eb1f010758623d",
+                    "x-checker-data": {
+                        "type": "git",
+                        "tag-pattern": "^v([\\d.]+)$"
+                    }
                 }
             ]
         },
@@ -213,15 +221,16 @@
             "name": "flatpak-builder-lint",
             "buildsystem": "simple",
             "build-commands": [
+                "cp -vf ${FLATPAK_DEST}/share/flathub/flathub-beta.summary flatpak_builder_lint/staticfiles/flathub-beta.summary",
+                "cp -vf ${FLATPAK_DEST}/share/flathub/flathub-stable.summary flatpak_builder_lint/staticfiles/flathub-stable.summary",
                 "ver=$(dunamai from git --style pep440) && sed -i -E 's/^version\\s*=\\s*\".*\"/version = \"'$ver'\"/' pyproject.toml",
-                "uv build -v --no-index --wheel --python /usr/bin/python3 --no-managed-python --no-python-downloads --no-build-isolation --offline --out-dir dist --find-links=\"file://${PWD}\"",
-                "pip3 install --prefix=/app dist/flatpak_builder_lint-*-none-any.whl --no-build-isolation"
+                "uv pip install -v --prefix=/app --no-index --offline --no-build-isolation --python /usr/bin/python ."
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/flathub/flatpak-builder-lint",
-                    "commit": "d3c9e2f5382464d0ca0cdfc9dbcdc249afc81784",
+                    "commit": "a530f2dcb80216b9b010fe2e3665933bb4900b8c",
                     "disable-shallow-clone": true
                 }
             ]
