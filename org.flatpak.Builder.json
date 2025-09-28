@@ -1,10 +1,10 @@
 {
     "app-id": "org.flatpak.Builder",
     "runtime": "org.freedesktop.Sdk",
-    "runtime-version": "24.08",
+    "runtime-version": "25.08",
     "sdk": "org.freedesktop.Sdk",
     "base": "org.flatpak.Builder.BaseApp",
-    "base-version": "24.08",
+    "base-version": "25.08",
     "command": "flatpak-builder-wrapper",
     "separate-locales": false,
     "finish-args": [
@@ -14,7 +14,8 @@
         "--filesystem=host",
         "--share=network",
         "--filesystem=xdg-data/flatpak",
-        "--filesystem=/var/lib/flatpak"
+        "--filesystem=/var/lib/flatpak",
+        "--env=GIT_CONFIG_NOSYSTEM=1"
     ],
     "cleanup": [
         "/include",
@@ -44,7 +45,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flathub-infra/appstream.git",
-                    "commit": "800390ca74a5b7d1125b6d23511171b3c66d75b2"
+                    "commit": "5b1f8b662be9112ef1721a6ae4757b9a17ec90e0"
                 }
             ]
         },
@@ -97,7 +98,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flathub-infra/flatpak-builder.git",
-                    "commit": "9d54e13a6c042558ff2265f279d60e358f86246b",
+                    "commit": "d9ae7ef152fd8f83522a04f7d2d75ff56f46e77a",
                     "disable-submodules": true
                 },
                 {
@@ -230,7 +231,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flathub/flatpak-builder-lint",
-                    "commit": "4842e253fc1bd11c87a9af591701f16cacb6b808",
+                    "commit": "528197da32e8d9f77d765a615808aba7c2f966f2",
                     "disable-shallow-clone": true
                 }
             ]
