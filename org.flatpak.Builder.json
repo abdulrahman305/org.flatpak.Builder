@@ -81,7 +81,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flathub-infra/flatpak.git",
-                    "commit": "9f97699ee12edc89ef1c6143a3ee8166c455a67c"
+                    "commit": "cc87184340cbb31875fe88996a521bd903732b94"
                 }
             ]
         },
@@ -208,8 +208,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flathub-infra/flathub-repro-checker.git",
-                    "tag": "v0.1.9",
-                    "commit": "9bf9e8d740972b48a65e686ab3eb1f010758623d",
+                    "tag": "v0.1.10",
+                    "commit": "2b26d60bb9cfb07bc8bb1e486c55891ef160261b",
                     "x-checker-data": {
                         "type": "git",
                         "tag-pattern": "^v([\\d.]+)$"
@@ -231,7 +231,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flathub/flatpak-builder-lint",
-                    "commit": "ec9c9f5aaf4468fb11784253da294fed1fc84c7f",
+                    "commit": "b24ec24ed84cdc4eee8a31d6f87529de1bc2e393",
                     "disable-shallow-clone": true
                 }
             ]
