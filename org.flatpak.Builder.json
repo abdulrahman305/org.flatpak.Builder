@@ -45,7 +45,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flathub-infra/appstream.git",
-                    "commit": "8b372b65f3fa75177ee268c4abeadbf9504a9d60"
+                    "commit": "795b5ad8f6f59d54ef6971a8bb953d52a9ea28d2"
                 }
             ]
         },
@@ -231,7 +231,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/flathub/flatpak-builder-lint",
-                    "commit": "ba9db8fbc7d554d04fa11fa7d3a84837ed3641b0",
+                    "commit": "d33747851e357d03f07f7d3f00eec323560dda26",
                     "disable-shallow-clone": true
                 }
             ]
